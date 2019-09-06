@@ -1,6 +1,7 @@
 package sorts
 
-func mergeSort(array []int) {
+// O(n) space
+func MergeSort(array []int) {
 	buf := append([]int(nil), array...)
 	doMergeSort(buf, array)
 }
@@ -43,14 +44,15 @@ func doMergeSort(array []int, buf []int) { // when function return, buf[] is sor
 	}
 }
 
-/// naive version, easier to understand, too many memory allocations, unfriendly to GC, worse performance
-// func mergeSort(array []int) []int {
+// naive version, easier to understand, too many memory allocations, unfriendly to GC, worse performance
+// unlike theoretical analysis, this version will acturally allocate O(nlogn) space, it's really slow
+// func MergeSort(array []int) []int {
 // 	if len(array) < 2 {
 // 		return array
 // 	}
 
-// 	left := mergeSort(array[:len(array)/2])
-// 	right := mergeSort(array[len(array)/2:])
+// 	left := MergeSort(array[:len(array)/2])
+// 	right := MergeSort(array[len(array)/2:])
 
 // 	/// merge
 // 	indexL, indexR, i := 0, 0, 0
@@ -64,7 +66,7 @@ func doMergeSort(array []int, buf []int) { // when function return, buf[] is sor
 // 			indexR++
 // 		}
 // 	}
-// 	if indexL < len(left) {
+// 	if indexL < len(left) {  // for simplicity
 // 		result = append(result[:i], left[indexL:]...)
 // 	} else {
 // 		result = append(result[:i], right[indexR:]...)
